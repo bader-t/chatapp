@@ -15,6 +15,11 @@ import java.util.ResourceBundle;
 public class LogginController implements Initializable {
     @FXML
     private Button btn_loggin;
+    @FXML
+    private Button btn_signup;
+
+    @FXML
+    private TextField tf_password;
 
     @FXML
     private TextField tf_username;
