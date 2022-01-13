@@ -9,7 +9,7 @@
 <AnchorPane prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.ensa.client.LogginController">
    <children>
       <TextField fx:id="tf_password" layoutX="105.0" layoutY="226.0" prefHeight="34.0" prefWidth="190.0" style="-fx-background-color: #fff; -fx-border-color: #aaa; -fx-border-radius: 5;" />
-      <Label layoutX="89.0" layoutY="31.0" text="Welcome to our " textFill="#42a7c3">
+      <Label layoutX="89.0" layoutY="16.0" text="Welcome to our " textFill="#42a7c3">
          <font>
             <Font name="Calibri Bold" size="32.0" />
          </font>
@@ -22,9 +22,9 @@
       </Label>
       <Button fx:id="btn_loggin" layoutX="105.0" layoutY="295.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="190.0" style="-fx-background-color: #42A7C3; -fx-background-radius: 5;" text="Loggin" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="Calibri Bold" size="16.0" />
          </font></Button>
-      <Label layoutX="143.0" layoutY="68.0" text="ChatApp" textFill="#42a7c3">
+      <Label layoutX="143.0" layoutY="53.0" text="ChatApp" textFill="#42a7c3">
          <font>
             <Font name="Calibri Bold" size="32.0" />
          </font>
@@ -34,12 +34,12 @@
             <Font name="Calibri" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="btn_signup" accessibleRole="BUTTON" layoutX="253.0" layoutY="341.0" text="Sign up" textFill="#42a7c3">
+      <Button fx:id="btn_signup" layoutX="246.0" layoutY="335.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="61.0" style="-fx-background-color: #fff; -fx-background-radius: 5;" text="Sign up" textFill="#42a7c3">
          <font>
-            <Font name="Calibri" size="14.0" />
+            <Font name="Calibri Bold" size="14.0" />
          </font>
-      </Label>
-      <Label layoutX="105.0" layoutY="341.0" text="You don't have an account? " textFill="#999999">
+      </Button>
+      <Label layoutX="100.0" layoutY="343.0" text="You don't have an account? " textFill="#999999">
          <font>
             <Font name="Calibri" size="13.0" />
          </font>
