@@ -1,12 +1,17 @@
 package ma.ensa.client;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import ma.ensa.client.Utils.DAO.DAO;
+import ma.ensa.client.Utils.DAO.DAOImpl;
+import ma.ensa.client.Utils.HashPassword;
 
 import java.io.IOException;
 import java.net.URL;
@@ -29,19 +34,56 @@ public class LogginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btn_loggin.setOnAction(ActionEvent->{
-            username = tf_username.getText();
-            if (!username.isEmpty()){
+            String password = tf_password.getText();
+            DAO dao = new DAOImpl();
+            String email = tf_username.getText();
+            String hashedPass = "";
+            if (!email.isEmpty() && !password.isEmpty()){
+                try{
+                    hashedPass= HashPassword.getHash(password);
+                    System.out.println("this is the password typed by the user when the login get done " + hashedPass);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+                if(!dao.login(email ,  hashedPass)){
 
-                    changeWindow(username);
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Vertify Your Email Or Your Password");
+                    alert.show();
+
+                }
+                else {
+                    System.out.println("y u re in");
+                    try {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        Thread.sleep(1000);
+                        changeWindow("client.fxml", username, 600, 400);
+                    }
+                    catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+            else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Please Fill All the fields");
+                alert.show();
             }
         });
+        btn_signup.setOnAction(ActionEvent->{
+            changeWindow("signup.fxml" ,null , 400 , 400);
+        });
+
     }
 
-    private void changeWindow(String username)  {
+
+
+    private void changeWindow(String fxml , String username , int size_w , int size_h)  {
        try {
             Stage stage = (Stage) tf_username.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("client.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource(fxml));
+            Scene scene = new Scene(fxmlLoader.load(), size_w, size_h);
             stage.setTitle(username + "");
             stage.setScene(scene);
             stage.setResizable(false);
@@ -50,4 +92,7 @@ public class LogginController implements Initializable {
            e.printStackTrace();
        }
     }
+
+
+
 }

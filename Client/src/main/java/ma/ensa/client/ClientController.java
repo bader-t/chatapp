@@ -92,7 +92,6 @@ public class ClientController implements Initializable {
                 vb_conversation.getChildren().add(hBox);
                 client.sendMessage(message);
                 tf_message.clear();
-
             }
         });
 
