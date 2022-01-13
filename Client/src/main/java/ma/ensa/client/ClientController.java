@@ -25,7 +25,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ClientController implements Initializable {
-    private Client server;
 
     @FXML
     private AnchorPane ap_main;
@@ -52,7 +51,7 @@ public class ClientController implements Initializable {
     @FXML
     private VBox vb_users;
 
-    private Client client;
+    public static Client client;
 
 
 
@@ -61,6 +60,8 @@ public class ClientController implements Initializable {
 
         try{
             client = new Client(new Socket("localhost",1234));
+            //send username to server to identify client
+            client.sendMessage(LogginController.username);
         }catch (IOException e){
         e.printStackTrace();
         }

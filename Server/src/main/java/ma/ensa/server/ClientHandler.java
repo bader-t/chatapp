@@ -10,12 +10,13 @@ public class ClientHandler implements Runnable{
     public Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
-    private String clientUsername;
+    public String username;
 
     public ClientHandler(Socket socket) throws IOException {
         this.socket = socket;
         this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+        username = bufferedReader.readLine();
         clientHandlers.add(this);
     }
 
@@ -37,7 +38,7 @@ public class ClientHandler implements Runnable{
     private void broadcastMessage(String message) {
         for(ClientHandler clientHandler : clientHandlers){
             try {
-                if (!clientHandler.socket.getRemoteSocketAddress().equals(socket.getRemoteSocketAddress())) {
+                if (!clientHandler.username.equals(username)) {
                     clientHandler.bufferedWriter.write(message);
                     clientHandler.bufferedWriter.newLine();
                     clientHandler.bufferedWriter.flush();

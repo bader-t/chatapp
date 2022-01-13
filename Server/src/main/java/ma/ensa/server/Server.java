@@ -8,7 +8,7 @@ import java.net.Socket;
 
 public class Server extends Thread {
 
-    private int ClientId;
+
     private ServerSocket serverSocket;
     Server(int port) throws IOException {
         this.serverSocket = new ServerSocket(port);
@@ -20,8 +20,8 @@ public class Server extends Thread {
         try {
             while (!serverSocket.isClosed()){
                 Socket socket = serverSocket.accept();
-                System.out.println(socket.getRemoteSocketAddress()+" connected");
                 ClientHandler clientHandler = new ClientHandler(socket);
+                System.out.println(clientHandler.username +" "+ socket.getRemoteSocketAddress() +" is connected");
                 Thread thread = new Thread(clientHandler);
                 thread.start();
             }
