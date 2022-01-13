@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.ensa.client.LogginController">
+<AnchorPane prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.ensa.client.SignupController">
    <children>
       <TextField fx:id="tf_email" layoutX="105.0" layoutY="191.0" prefHeight="34.0" prefWidth="190.0" style="-fx-background-color: #fff; -fx-border-color: #aaa; -fx-border-radius: 5;" />
       <Label layoutX="89.0" layoutY="16.0" text="Welcome to our " textFill="#42a7c3">
