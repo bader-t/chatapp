@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 public class LogginController implements Initializable {
     @FXML
-    private Button btn_loggin;
+    private Button btn_login;
     @FXML
     private Button btn_signup;
 
@@ -34,7 +34,7 @@ public class LogginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        btn_loggin.setOnAction(ActionEvent->{
+        btn_login.setOnAction(ActionEvent->{
             String password = tf_password.getText();
             DAO dao = new DAOImpl();
             String email = tf_username.getText();
@@ -73,7 +73,7 @@ public class LogginController implements Initializable {
             }
         });
         btn_signup.setOnAction(ActionEvent->{
-            changeWindow("signup.fxml" ,"Create Account" , 400 , 400);
+            changeWindow("signup.fxml" ,"Sign Up" , 700 , 500);
         });
 
     }

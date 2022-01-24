@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import ma.ensa.client.Utils.DAO.DAO;
 import ma.ensa.client.Utils.DAO.DAOImpl;
@@ -67,19 +68,21 @@ public class SignupController implements Initializable {
             }
         });
         btn_loggin.setOnAction(ActionEvent->{
-            changeWindow("loggin.fxml" ,null , 400 , 400);
+            changeWindow("loggin.fxml" ,"Log In" , 700 , 500);
         });
 
     }
 
 
 
-    private void changeWindow(String fxml , String username , int size_w , int size_h)  {
+    private void changeWindow(String fxml , String title , int size_w , int size_h)  {
         try {
             Stage stage = (Stage) tf_username.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource(fxml));
             Scene scene = new Scene(fxmlLoader.load(), size_w, size_h);
-            stage.setTitle(username + "");
+            Image image = new Image(Main.class.getResource("icons/logo.png").toString());
+            stage.getIcons().add(image);
+            stage.setTitle(title);
             stage.setScene(scene);
             stage.setResizable(false);
             stage.show();

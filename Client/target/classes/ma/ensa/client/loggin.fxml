@@ -1,53 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.ensa.client.LogginController">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.ensa.client.LogginController">
    <children>
-      <PasswordField fx:id="tf_password" layoutX="105.0" layoutY="226.0" prefHeight="34.0" prefWidth="190.0" style="-fx-background-color: #fff; -fx-border-color: #aaa; -fx-border-radius: 5;" />
-      <Label layoutX="89.0" layoutY="16.0" text="Welcome to our " textFill="#42a7c3">
-         <font>
-            <Font name="Calibri Bold" size="32.0" />
-         </font>
-      </Label>
-      <TextField fx:id="tf_username" layoutX="105.0" layoutY="157.0" prefHeight="34.0" prefWidth="190.0" style="-fx-background-color: #fff; -fx-border-color: #aaa; -fx-border-radius: 5;" />
-      <Label layoutX="105.0" layoutY="136.0" text="Enter your email" textFill="#999999">
-         <font>
-            <Font name="Calibri" size="14.0" />
-         </font>
-      </Label>
-      <Button fx:id="btn_loggin" layoutX="105.0" layoutY="295.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="190.0" style="-fx-background-color: #42A7C3; -fx-background-radius: 5;" text="Loggin" textFill="WHITE">
-         <font>
-            <Font name="Calibri Bold" size="16.0" />
-         </font></Button>
-      <Label layoutX="143.0" layoutY="53.0" text="ChatApp" textFill="#42a7c3">
-         <font>
-            <Font name="Calibri Bold" size="32.0" />
-         </font>
-      </Label>
-      <Label layoutX="105.0" layoutY="205.0" text="Enter your password" textFill="#999999">
-         <font>
-            <Font name="Calibri" size="14.0" />
-         </font>
-      </Label>
-      <Button fx:id="btn_signup" layoutX="246.0" layoutY="335.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="61.0" style="-fx-background-color: #fff; -fx-background-radius: 5;" text="Sign up" textFill="#42a7c3">
-         <font>
-            <Font name="Calibri Bold" size="14.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Label layoutX="100.0" layoutY="343.0" text="You don't have an account? " textFill="#999999">
-         <font>
-            <Font name="Calibri" size="13.0" />
-         </font>
-      </Label>
+      <AnchorPane layoutX="350.0" prefHeight="500.0" prefWidth="350.0">
+         <children>
+            <PasswordField fx:id="tf_password" layoutX="48.0" layoutY="284.0" prefHeight="34.0" prefWidth="250.0" style="-fx-background-color: #fff; -fx-border-color: #aaa; -fx-border-radius: 5;" />
+            <TextField fx:id="tf_username" layoutX="48.0" layoutY="215.0" prefHeight="34.0" prefWidth="250.0" style="-fx-background-color: #fff; -fx-border-color: #aaa; -fx-border-radius: 5;" />
+            <Label layoutX="50.0" layoutY="194.0" text="Enter your email" textFill="#999999">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="btn_login" layoutX="50.0" layoutY="351.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="250.0" style="-fx-background-color: #0088cc; -fx-background-radius: 5;" text="Login" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </Button>
+            <Label layoutX="132.0" layoutY="82.0" text="Login" textFill="#0088cc">
+               <font>
+                  <Font name="Calibri Bold" size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="263.0" text="Enter your password" textFill="#999999">
+               <font>
+                  <Font name="Calibri" size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="btn_signup" layoutX="210.0" layoutY="422.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="61.0" style="-fx-background-color: #fff; -fx-background-radius: 5;" text="Sign up" textFill="#0088cc">
+               <font>
+                  <Font name="Calibri Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="64.0" layoutY="430.0" text="You don't have an account? " textFill="#999999">
+               <font>
+                  <Font name="Calibri" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="500.0" prefWidth="350.0" style="-fx-background-color: #0088cc;">
+         <children>
+            <Label layoutX="64.0" layoutY="305.0" text="Welcome to our " textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="118.0" layoutY="342.0" text="ChatApp" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Bold" size="32.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="88.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/img1.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
