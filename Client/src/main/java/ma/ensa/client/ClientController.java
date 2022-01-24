@@ -53,6 +53,9 @@ public class ClientController implements Initializable {
 
     public static Client client;
 
+    public static String sendTo = "@toAll";
+
+
 
 
     @Override
@@ -60,22 +63,18 @@ public class ClientController implements Initializable {
 
         try{
             client = new Client(new Socket("localhost",1234));
-            //send username to server to identify client
-            client.sendMessage(LogginController.username);
+            //send username to server to identify client flag="@loggedIn"
+            client.sendMessage("@loggedIn",LogginController.username);
         }catch (IOException e){
         e.printStackTrace();
         }
 
         lb_username.setText(LogginController.username);
 
-        vb_conversation.heightProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
-                sp_conversation.setVvalue((Double) t1);
-            }
-        });
+        vb_conversation.heightProperty().addListener((observableValue, number, t1) -> sp_conversation.setVvalue((Double) t1));
+        vb_users.heightProperty().addListener((observableValue, number, t1) -> sp_users.setVvalue((Double) t1));
 
-        client.receiveMessage(vb_conversation);
+        client.receiveMessage(vb_conversation,vb_users);
 
         btn_send.setOnAction(actionEvent -> {
             String message = tf_message.getText();
@@ -87,10 +86,10 @@ public class ClientController implements Initializable {
                 hBox.setPadding(new Insets(3,0,3,0));
                 TextFlow textFlow = new TextFlow(text);
                 textFlow.setPadding(new Insets(7,14,7,14));
-                textFlow.setStyle("-fx-background-color:  #42A7C3;-fx-background-radius: 20px;");
+                textFlow.setStyle("-fx-background-color:  #0088cc;-fx-background-radius: 20px;");
                 hBox.getChildren().add(textFlow);
                 vb_conversation.getChildren().add(hBox);
-                client.sendMessage(message);
+                client.sendMessage(sendTo,message);
                 tf_message.clear();
             }
         });
@@ -110,6 +109,18 @@ public class ClientController implements Initializable {
         textFlow.setStyle("-fx-background-color:  rgb(233,233,235);-fx-background-radius: 20px;");
         hBox.getChildren().add(textFlow);
         Platform.runLater(() -> vb_conversation.getChildren().add(hBox));
+    }
+
+    public static void addConnectedUsers(String [] connectedUsers, VBox vb_users) {
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
+        Text text = new Text(connectedUsers[0]);
+        text.setStyle("-fx-fill: black;");
+        hBox.setPadding(new Insets(3,0,3,0));
+        TextFlow textFlow = new TextFlow(text);
+        textFlow.setPadding(new Insets(7,14,7,14));
+        hBox.getChildren().add(textFlow);
+        Platform.runLater(() -> vb_users.getChildren().add(hBox));
     }
 
 }

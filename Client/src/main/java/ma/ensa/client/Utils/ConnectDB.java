@@ -16,7 +16,7 @@ public class ConnectDB {
     private Statement st ;
     public ConnectDB(){
         try{
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/user" ,"root" ,"" );
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/user" ,"root" ,"root" );
             st = conn.createStatement();
         }
         catch ( SQLException e){

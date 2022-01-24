@@ -7,7 +7,7 @@ import java.net.Socket;
 
 public class Client {
 
-    private int ClientId;
+
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
@@ -27,11 +27,32 @@ public class Client {
     }
 
 
-    public void receiveMessage(VBox vb_conversation) {
+    public void receiveMessage(VBox vb_conversation,VBox vb_users) {
         new Thread(() -> {
             while (socket.isConnected()){
                 try{
                     String message = bufferedReader.readLine();
+                    /*
+                     * Types of comming messages from server
+                     * message = "@toAllFrom:jhon:hello everyone" -> flag="@toAllFrom" sender="jhon" (message sent by sender="jhon" to all connected users)
+                     * message = "@connectedUsers:abdelkarim:bader:faya:imad:mehdi:yessine" -> flag="@connectedUsers" (connected users separated with ":")
+                     * default message = "faya:I'm fine thanks :)" ->  sender="faya" (message sent by user="faya")
+                     * */
+
+                    // split message to two parts :
+                    String data[] = message.split(":",2);
+                    // data[0] contains the flag or username, data[1] contains info or message
+
+                    switch (data[0]){
+                        case "@connectedUsers":
+                            String connectedUsers[] = data[1].split(":");
+                            ClientController.addConnectedUsers(connectedUsers,vb_users);
+                            break;
+                        case "@toAllFrom":
+                            break;
+                        default:
+                            break;
+                    }
                     ClientController.addReceivedMessage(message,vb_conversation);
 
                 } catch(IOException e){
@@ -43,13 +64,14 @@ public class Client {
         }).start();
     }
 
-    public void sendMessage(String message) {
+    // head can be either a flag or username of sender
+    public void sendMessage(String head,String message) {
         try{
-            bufferedWriter.write(message);
+            bufferedWriter.write(head+":"+message);
             bufferedWriter.newLine();
             bufferedWriter.flush();
         }catch (IOException e){
-            System.out.println("Error sending message to !!!");
+            System.out.println("Error sending message to "+head);
             e.printStackTrace();
         }
     }

@@ -9,41 +9,39 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ap_main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.ensa.client.ClientController">
+<AnchorPane fx:id="ap_main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #0088cc; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ma.ensa.client.ClientController">
    <children>
-      <Label fx:id="lb_username" layoutX="24.0" layoutY="29.0" text="bader-t" textFill="#666666">
+      <Label fx:id="lb_username" layoutX="20.0" layoutY="20.0" text="bader-t" textFill="WHITE">
          <font>
             <Font name="Calibri" size="22.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="200.0" prefHeight="400.0" prefWidth="400.0">
+      <AnchorPane layoutX="200.0" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #fff;">
          <children>
-            <TextField fx:id="tf_message" layoutX="20.0" layoutY="339.0" prefHeight="35.0" prefWidth="303.0" style="-fx-background-color: #fff; -fx-border-color: #999; -fx-border-radius: 5;" />
-            <ScrollPane fx:id="sp_conversation" hbarPolicy="NEVER" layoutX="20.0" layoutY="25.0" prefHeight="300.0" prefWidth="360.0" style="-fx-background-color: #fff; -fx-border-color: #999; -fx-border-radius: 5;">
-               <content>
-                  <VBox fx:id="vb_conversation" prefHeight="294.0" prefWidth="350.0" style="-fx-background-color: #fff;">
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </VBox>
-               </content>
-            </ScrollPane>
-            <Button fx:id="btn_send" layoutX="334.0" layoutY="339.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: #42A7C3;" text="send" textFill="WHITE">
+            <TextField fx:id="tf_message" layoutX="15.0" layoutY="450.0" prefHeight="35.0" prefWidth="413.0" style="-fx-background-color: #fff; -fx-border-color: #999; -fx-border-radius: 5;" />
+            <Button fx:id="btn_send" layoutX="439.0" layoutY="450.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="46.0" style="-fx-background-color: #0088cc;" text="send" textFill="WHITE">
                <font>
                   <Font size="13.0" />
                </font>
             </Button>
+            <ScrollPane fx:id="sp_conversation" hbarPolicy="NEVER" prefHeight="430.0" prefWidth="500.0" style="-fx-background: #fff; -fx-background-color: #fff;" stylesheets="@styles/scrollbar.css" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <content>
+                  <VBox fx:id="vb_conversation" alignment="TOP_CENTER" prefHeight="428.0" prefWidth="500.0" style="-fx-background-color: #fff;">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </ScrollPane>
          </children>
       </AnchorPane>
-      <Label layoutX="24.0" layoutY="88.0" prefHeight="23.0" prefWidth="173.0" text="Connected users" textFill="#42a7c3">
+      <Button fx:id="btn_logout" layoutX="150.0" layoutY="20.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #0088cc; -fx-border-color: #fff; -fx-border-radius: 5;" text="O" textFill="WHITE">
          <font>
-            <Font name="Calibri" size="20.0" />
-         </font>
-      </Label>
-      <Button fx:id="btn_logout" layoutX="142.0" layoutY="30.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="56.0" style="-fx-background-color: #999;" text="logout" textFill="WHITE" />
-      <ScrollPane fx:id="sp_users" layoutX="23.0" layoutY="121.0" prefHeight="254.0" prefWidth="175.0" style="-fx-background-color: #fff; -fx-border-color: #999; -fx-border-radius: 5;">
+            <Font size="11.0" />
+         </font></Button>
+      <ScrollPane fx:id="sp_users" hbarPolicy="NEVER" layoutY="69.0" prefHeight="430.0" prefWidth="200.0" style="-fx-background: #0088cc; -fx-border-color: #0088cc;" stylesheets="@styles/scrollbar.css">
          <content>
-            <VBox fx:id="vb_users" prefHeight="249.0" prefWidth="169.0" style="-fx-background-color: #fff;">
+            <VBox fx:id="vb_users" alignment="TOP_CENTER" prefHeight="425.0" prefWidth="200.0" style="-fx-background-color: #0088cc;" visible="false">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </padding>

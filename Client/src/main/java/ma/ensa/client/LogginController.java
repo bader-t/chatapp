@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import ma.ensa.client.Utils.DAO.DAO;
 import ma.ensa.client.Utils.DAO.DAOImpl;
@@ -57,7 +58,7 @@ public class LogginController implements Initializable {
                     try {
                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
                         Thread.sleep(1000);
-                        changeWindow("client.fxml", username, 600, 400);
+                        changeWindow("client.fxml", username, 700, 500);
                     }
                     catch (InterruptedException e){
                         e.printStackTrace();
@@ -72,19 +73,21 @@ public class LogginController implements Initializable {
             }
         });
         btn_signup.setOnAction(ActionEvent->{
-            changeWindow("signup.fxml" ,null , 400 , 400);
+            changeWindow("signup.fxml" ,"Create Account" , 400 , 400);
         });
 
     }
 
 
 
-    private void changeWindow(String fxml , String username , int size_w , int size_h)  {
+    private void changeWindow(String fxml , String title , int size_w , int size_h)  {
        try {
             Stage stage = (Stage) tf_username.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource(fxml));
             Scene scene = new Scene(fxmlLoader.load(), size_w, size_h);
-            stage.setTitle(username + "");
+           Image logo = new Image(Main.class.getResource("icons/logo.png").toString());
+           stage.getIcons().add(logo);
+            stage.setTitle(title);
             stage.setScene(scene);
             stage.setResizable(false);
             stage.show();
