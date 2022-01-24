@@ -28,16 +28,17 @@ public class LogginController implements Initializable {
     private TextField tf_password;
 
     @FXML
-    private TextField tf_username;
+    private TextField tf_email;
 
     public static String username;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btn_login.setOnAction(ActionEvent->{
+            tf_email.requestFocus();
             String password = tf_password.getText();
             DAO dao = new DAOImpl();
-            String email = tf_username.getText();
+            String email = tf_email.getText();
             String hashedPass = "";
             if (!email.isEmpty() && !password.isEmpty()){
                 try{
@@ -82,7 +83,7 @@ public class LogginController implements Initializable {
 
     private void changeWindow(String fxml , String title , int size_w , int size_h)  {
        try {
-            Stage stage = (Stage) tf_username.getScene().getWindow();
+            Stage stage = (Stage) tf_email.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource(fxml));
             Scene scene = new Scene(fxmlLoader.load(), size_w, size_h);
            Image logo = new Image(Main.class.getResource("icons/logo.png").toString());

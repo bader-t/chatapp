@@ -14,8 +14,8 @@
    <children>
       <AnchorPane layoutX="350.0" prefHeight="500.0" prefWidth="350.0">
          <children>
+            <TextField fx:id="tf_email" layoutX="48.0" layoutY="215.0" prefHeight="34.0" prefWidth="250.0" style="-fx-background-color: #fff; -fx-border-color: #aaa; -fx-border-radius: 5;" />
             <PasswordField fx:id="tf_password" layoutX="48.0" layoutY="284.0" prefHeight="34.0" prefWidth="250.0" style="-fx-background-color: #fff; -fx-border-color: #aaa; -fx-border-radius: 5;" />
-            <TextField fx:id="tf_username" layoutX="48.0" layoutY="215.0" prefHeight="34.0" prefWidth="250.0" style="-fx-background-color: #fff; -fx-border-color: #aaa; -fx-border-radius: 5;" />
             <Label layoutX="50.0" layoutY="194.0" text="Enter your email" textFill="#999999">
                <font>
                   <Font name="Calibri" size="14.0" />
@@ -25,9 +25,6 @@
                <font>
                   <Font name="Calibri Bold" size="16.0" />
                </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
             </Button>
             <Label layoutX="132.0" layoutY="82.0" text="Login" textFill="#0088cc">
                <font>
