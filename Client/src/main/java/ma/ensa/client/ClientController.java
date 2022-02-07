@@ -18,6 +18,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -93,7 +95,14 @@ public class ClientController implements Initializable {
                 tf_message.clear();
             }
         });
-
+        Stage stage= (Stage)tf_message.getScene().getWindow();
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                client.sendMessage("@loggedOut",LogginController.username);
+                client.shutDown();
+            }
+        });
 
     }
 

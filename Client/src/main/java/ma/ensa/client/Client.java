@@ -76,7 +76,7 @@ public class Client {
         }
     }
 
-    private void shutDown() {
+    public void shutDown() {
         try{
             if (bufferedReader != null)
                 bufferedReader.close();

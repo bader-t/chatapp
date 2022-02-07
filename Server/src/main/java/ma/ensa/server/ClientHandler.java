@@ -43,13 +43,14 @@ public class ClientHandler implements Runnable{
                     case "@loggedIn":
                         username = data[1];
                         clientHandlers.add(this);
-//                        broadcastConnectedUsers(clientHandlers.parseToString);
+//                        broadcastConnectedUsers(ConnectedUsersToString(clientHandlers);
                         break;
                     case "@toAll":
                         broadcastMessage(message);
                         break;
                     case "@loggedOut":
                         userLoggedOut(data[1]);
+ //                       broadcastConnectedUsers(ConnectedUsersToString(clientHandlers));
                         break;
                     default:
                         broadcastMessageTo(data[0],data[1]);
@@ -64,7 +65,25 @@ public class ClientHandler implements Runnable{
     }
 
     private void broadcastConnectedUsers(String s) {
+        try {
+            for (ClientHandler clientHandler : clientHandlers) {
+                clientHandler.bufferedWriter.write(s);
+                clientHandler.bufferedWriter.newLine();
+                clientHandler.bufferedWriter.flush();
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+            System.out.println("Error sending list of connected users");
+        }
+
+
     }
+    //takes a list of Clients handlers and return a Sting containing usernames of connected users separated with ":"
+    // example of the return bader:karim:yassine:imade:mehdi:fred
+    private String ConnectedUsersToSting(List<ClientHandler> clientHandlers){
+        return  null;
+    }
+
 
     // send message to username
     private void broadcastMessageTo(String username, String message) {
@@ -73,8 +92,14 @@ public class ClientHandler implements Runnable{
 
     // delete loggedOut user from connected users
     private void userLoggedOut(String username) {
-    }
+        for(ClientHandler clientHandler :clientHandlers){
+            if(clientHandler.username.equals(username)){
+                clientHandlers.remove(clientHandler);
+            }
+        }
 
+
+    }
     private void broadcastMessage(String message) {
         for(ClientHandler clientHandler : clientHandlers){
             try {
@@ -92,9 +117,7 @@ public class ClientHandler implements Runnable{
         }
     }
 
-    public void removeHandler(){
-        clientHandlers.remove(this);
-    }
+
 
     public void closeClientHandler(Socket socket, BufferedReader bufferedReader, BufferedWriter bufferedWriter)  {
         try{
