@@ -81,7 +81,11 @@ public class ClientHandler implements Runnable{
     //takes a list of Clients handlers and return a Sting containing usernames of connected users separated with ":"
     // example of the return bader:karim:yassine:imade:mehdi:fred
     private String ConnectedUsersToSting(List<ClientHandler> clientHandlers){
-        return  null;
+        String connectedUser = "";
+        for(ClientHandler clientHandler : clientHandlers){
+            connectedUser += clientHandler.username + ":";
+        }
+        return connectedUser.substring(0,connectedUser.length()-1);
     }
 
 
