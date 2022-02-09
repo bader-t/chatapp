@@ -113,7 +113,7 @@ public class ClientController implements Initializable {
             }catch(IOException e){
                 e.printStackTrace();
             }
-            client.exit();
+            client.shutDown();
 
         });
        stage.setOnCloseRequest(event -> {
