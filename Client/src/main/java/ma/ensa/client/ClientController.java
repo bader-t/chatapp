@@ -100,6 +100,22 @@ public class ClientController implements Initializable {
                 tf_message.clear();
             }
         });
+        btn_logout.setOnAction(actionEvent -> {
+            try {
+
+                Stage stage = (Stage) btn_logout.getScene().getWindow();
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("loggin.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 400, 400);
+                stage.setTitle("loggin");
+                stage.setScene(scene);
+                stage.setResizable(false);
+                stage.show();
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+            client.exit();
+
+        });
        stage.setOnCloseRequest(event -> {
            client.sendMessage("@loggedOut", client.getUsername());
            System.exit(0);
