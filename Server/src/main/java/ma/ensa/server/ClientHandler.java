@@ -46,7 +46,7 @@ public class ClientHandler implements Runnable{
                        broadcastConnectedUsers(ConnectedUsersToString(clientHandlers));
                         break;
                     case "@toAll":
-                        broadcastMessage(message);
+                        broadcastMessage(data[1]);
                         break;
                     case "@loggedOut":
                         userLoggedOut();

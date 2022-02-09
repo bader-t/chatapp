@@ -2,10 +2,12 @@ package ma.ensa.client;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -96,7 +98,7 @@ public class ClientController implements Initializable {
                 textFlow.setStyle("-fx-background-color:  #0088cc;-fx-background-radius: 20px;");
                 hBox.getChildren().add(textFlow);
                 vb_conversation.getChildren().add(hBox);
-                client.sendMessage(sendTo,message);
+                client.sendMessage(sendTo+":"+client.getUsername(),message);
                 tf_message.clear();
             }
         });
@@ -105,7 +107,7 @@ public class ClientController implements Initializable {
 
                 Stage stage = (Stage) btn_logout.getScene().getWindow();
                 FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("loggin.fxml"));
-                Scene scene = new Scene(fxmlLoader.load(), 400, 400);
+                Scene scene = new Scene(fxmlLoader.load(), 700, 500);
                 stage.setTitle("loggin");
                 stage.setScene(scene);
                 stage.setResizable(false);
@@ -125,16 +127,23 @@ public class ClientController implements Initializable {
 
 
     public static void addReceivedMessage(String message, VBox vb_conversation) {
+        String [] data = message.split(":",2);
+        HBox hBox0 = new HBox();
+        hBox0.setAlignment(Pos.CENTER_LEFT);
+        Text sender = new Text(data[0]);
+        sender.setStyle("-fx-fill: gray;");
+        hBox0.getChildren().add(sender);
+
         HBox hBox = new HBox();
         hBox.setAlignment(Pos.CENTER_LEFT);
-        Text text = new Text(message);
+        Text text = new Text(data[1]);
         text.setStyle("-fx-fill: black;");
         hBox.setPadding(new Insets(3,0,3,0));
         TextFlow textFlow = new TextFlow(text);
         textFlow.setPadding(new Insets(7,14,7,14));
         textFlow.setStyle("-fx-background-color:  rgb(233,233,235);-fx-background-radius: 20px;");
         hBox.getChildren().add(textFlow);
-        Platform.runLater(() -> vb_conversation.getChildren().add(hBox));
+        Platform.runLater(() -> vb_conversation.getChildren().addAll(hBox0,hBox));
     }
 
     public static void addConnectedUsers(String connectedUsers, VBox vb_users) {
