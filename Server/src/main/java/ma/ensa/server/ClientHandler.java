@@ -43,14 +43,14 @@ public class ClientHandler implements Runnable{
                     case "@loggedIn":
                         username = data[1];
                         clientHandlers.add(this);
-//                        broadcastConnectedUsers(ConnectedUsersToString(clientHandlers);
+                       broadcastConnectedUsers(ConnectedUsersToString(clientHandlers));
                         break;
                     case "@toAll":
                         broadcastMessage(message);
                         break;
                     case "@loggedOut":
                         userLoggedOut(data[1]);
- //                       broadcastConnectedUsers(ConnectedUsersToString(clientHandlers));
+                        broadcastConnectedUsers(ConnectedUsersToString(clientHandlers));
                         break;
                     default:
                         broadcastMessageTo(data[0],data[1]);
@@ -64,10 +64,10 @@ public class ClientHandler implements Runnable{
 
     }
 
-    private void broadcastConnectedUsers(String s) {
+    private void broadcastConnectedUsers(String connectedUsers) {
         try {
             for (ClientHandler clientHandler : clientHandlers) {
-                clientHandler.bufferedWriter.write(s);
+                clientHandler.bufferedWriter.write("@connectedUsers:"+connectedUsers);
                 clientHandler.bufferedWriter.newLine();
                 clientHandler.bufferedWriter.flush();
             }
@@ -80,7 +80,7 @@ public class ClientHandler implements Runnable{
     }
     //takes a list of Clients handlers and return a Sting containing usernames of connected users separated with ":"
     // example of the return bader:karim:yassine:imade:mehdi:fred
-    private String ConnectedUsersToSting(List<ClientHandler> clientHandlers){
+    private String ConnectedUsersToString(List<ClientHandler> clientHandlers){
         String connectedUser = "";
         for(ClientHandler clientHandler : clientHandlers){
             connectedUser += clientHandler.username + ":";
@@ -135,4 +135,7 @@ public class ClientHandler implements Runnable{
             e.printStackTrace();
         }
     }
+
+
+
 }

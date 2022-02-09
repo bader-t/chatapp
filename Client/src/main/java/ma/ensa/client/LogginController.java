@@ -1,6 +1,5 @@
 package ma.ensa.client;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -84,7 +83,8 @@ public class LogginController implements Initializable {
     private void changeWindow(String fxml , String title , int size_w , int size_h)  {
        try {
             Stage stage = (Stage) tf_email.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource(fxml));
+           ClientController.stage = stage;
+           FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource(fxml));
             Scene scene = new Scene(fxmlLoader.load(), size_w, size_h);
            Image logo = new Image(Main.class.getResource("icons/logo.png").toString());
            stage.getIcons().add(logo);

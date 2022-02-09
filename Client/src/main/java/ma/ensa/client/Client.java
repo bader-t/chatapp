@@ -11,7 +11,15 @@ public class Client {
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
+    private String username;
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
 
     Client(Socket socket) {
         try{
@@ -45,15 +53,16 @@ public class Client {
 
                     switch (data[0]){
                         case "@connectedUsers":
-                            String connectedUsers[] = data[1].split(":");
-                            ClientController.addConnectedUsers(connectedUsers,vb_users);
+                            ClientController.addConnectedUsers(data[1],vb_users);
                             break;
                         case "@toAllFrom":
+                            ClientController.addReceivedMessage(data[1],vb_conversation);
                             break;
                         default:
+                            ClientController.addReceivedMessage(message,vb_conversation);
                             break;
                     }
-                    ClientController.addReceivedMessage(message,vb_conversation);
+
 
                 } catch(IOException e){
                     System.out.println("Error receiving message from !!!");
