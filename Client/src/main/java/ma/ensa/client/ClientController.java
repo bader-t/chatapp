@@ -30,8 +30,7 @@ public class ClientController implements Initializable {
     @FXML
     private Label lb_username;
 
-    @FXML
-    private Label lb_receiver;
+
 
     @FXML
     private Button btn_logout;
@@ -77,7 +76,6 @@ public class ClientController implements Initializable {
         }
 
         lb_username.setText(client.getUsername());
-        lb_receiver.setText(receiver);
 
         vb_conversation.heightProperty().addListener((observableValue, number, t1) -> sp_conversation.setVvalue((Double) t1));
         vb_users.heightProperty().addListener((observableValue, number, t1) -> sp_users.setVvalue((Double) t1));
@@ -136,7 +134,6 @@ public class ClientController implements Initializable {
                 btn_user.setCursor(Cursor.HAND);
                 btn_user.setOnAction(e->{
                     Button selected = (Button) e.getTarget();
-                        receiver = selected.getText();
                 });
                 Platform.runLater(() -> vb_users.getChildren().add(btn_user));
             }

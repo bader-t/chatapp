@@ -38,9 +38,9 @@
                   </VBox>
                </content>
             </ScrollPane>
-            <Pane prefHeight="70.0" prefWidth="500.0" style="-fx-background-color: #0088cc;">
+            <Pane prefHeight="70.0" prefWidth="500.0" style="-fx-background-color: #fff;">
                <children>
-                  <Label fx:id="lb_receiver" layoutX="40.0" layoutY="20.0" text="bader-t" textFill="WHITE">
+                  <Label fx:id="lb_receiver" layoutX="40.0" layoutY="20.0" text="bader-t" textFill="#0088cc">
                      <font>
                         <Font name="Calibri" size="22.0" />
                      </font>
@@ -53,7 +53,7 @@
          <font>
             <Font size="11.0" />
          </font></Button>
-      <ScrollPane fx:id="sp_users" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutY="69.0" prefHeight="430.0" prefWidth="200.0" style="-fx-background: #fff; -fx-border-color: #eee;" stylesheets="@styles/scrollbar.css">
+      <ScrollPane fx:id="sp_users" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutY="69.0" prefHeight="430.0" prefWidth="200.0" style="-fx-background: #0088cc; -fx-border-color: #0088cc;" stylesheets="@styles/scrollbar.css">
          <content>
             <VBox fx:id="vb_users" alignment="TOP_CENTER" prefHeight="422.0" prefWidth="190.0" style="-fx-background-color: #0088cc;" />
          </content>
