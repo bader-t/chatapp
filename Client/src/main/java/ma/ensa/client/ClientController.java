@@ -1,8 +1,6 @@
 package ma.ensa.client;
 
 import javafx.application.Platform;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -18,22 +16,23 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static javafx.stage.WindowEvent.WINDOW_CLOSE_REQUEST;
-
 public class ClientController implements Initializable {
 
-    static Stage stage;
+    public static Stage stage;
     @FXML
     private AnchorPane ap_main;
     @FXML
     private Label lb_username;
+
+    @FXML
+    private Label lb_receiver;
+
     @FXML
     private Button btn_logout;
 
@@ -57,16 +56,11 @@ public class ClientController implements Initializable {
 
     public static Client client;
 
-
     public static String sendTo = "@toAll";
 
-    private void handler(WindowEvent evt){
-        EventType<WindowEvent> window = evt.getEventType();
-        if(window == WINDOW_CLOSE_REQUEST){
-            client.sendMessage("@loggedOut", client.getUsername());
-                client.shutDown();
-        }
-    }
+
+    public static String receiver;
+
 
 
 
@@ -79,15 +73,17 @@ public class ClientController implements Initializable {
             client.setUsername(LogginController.username);
             client.sendMessage("@loggedIn", client.getUsername());
         }catch (IOException e){
-        e.printStackTrace();
+            e.printStackTrace();
         }
 
         lb_username.setText(client.getUsername());
+        lb_receiver.setText(receiver);
 
         vb_conversation.heightProperty().addListener((observableValue, number, t1) -> sp_conversation.setVvalue((Double) t1));
         vb_users.heightProperty().addListener((observableValue, number, t1) -> sp_users.setVvalue((Double) t1));
 
         client.receiveMessage(vb_conversation,vb_users);
+
 
         btn_send.setOnAction(actionEvent -> {
             String message = tf_message.getText();
@@ -128,6 +124,7 @@ public class ClientController implements Initializable {
     }
 
     public static void addConnectedUsers(String connectedUsers, VBox vb_users) {
+        Platform.runLater(() -> vb_users.getChildren().removeAll());
         String users[] = connectedUsers.split(":");
         for(String user: users){
             if (!user.equals(client.getUsername())) {
@@ -137,6 +134,10 @@ public class ClientController implements Initializable {
                 btn_user.setAlignment(Pos.TOP_LEFT);
                 btn_user.setMaxWidth(Double.MAX_VALUE);
                 btn_user.setCursor(Cursor.HAND);
+                btn_user.setOnAction(e->{
+                    Button selected = (Button) e.getTarget();
+                        receiver = selected.getText();
+                });
                 Platform.runLater(() -> vb_users.getChildren().add(btn_user));
             }
         }

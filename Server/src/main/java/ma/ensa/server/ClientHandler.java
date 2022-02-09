@@ -49,7 +49,7 @@ public class ClientHandler implements Runnable{
                         broadcastMessage(message);
                         break;
                     case "@loggedOut":
-                        userLoggedOut(data[1]);
+                        userLoggedOut();
                         broadcastConnectedUsers(ConnectedUsersToString(clientHandlers));
                         break;
                     default:
@@ -95,14 +95,8 @@ public class ClientHandler implements Runnable{
 
 
     // delete loggedOut user from connected users
-    private void userLoggedOut(String username) {
-        for(ClientHandler clientHandler :clientHandlers){
-            if(clientHandler.username.equals(username)){
-                clientHandlers.remove(clientHandler);
-            }
-        }
-
-
+    private void userLoggedOut() {
+                clientHandlers.remove(this);
     }
     private void broadcastMessage(String message) {
         for(ClientHandler clientHandler : clientHandlers){
