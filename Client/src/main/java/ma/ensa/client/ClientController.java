@@ -122,7 +122,7 @@ public class ClientController implements Initializable {
     }
 
     public static void addConnectedUsers(String connectedUsers, VBox vb_users) {
-        Platform.runLater(() -> vb_users.getChildren().removeAll());
+        Platform.runLater(() -> vb_users.getChildren().clear());
         String users[] = connectedUsers.split(":");
         for(String user: users){
             if (!user.equals(client.getUsername())) {
@@ -135,7 +135,9 @@ public class ClientController implements Initializable {
                 btn_user.setOnAction(e->{
                     Button selected = (Button) e.getTarget();
                 });
-                Platform.runLater(() -> vb_users.getChildren().add(btn_user));
+                Platform.runLater(() -> {
+                    vb_users.getChildren().add(btn_user);
+                });
             }
         }
     }

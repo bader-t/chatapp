@@ -7,7 +7,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -29,24 +28,15 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ScrollPane fx:id="sp_conversation" hbarPolicy="NEVER" layoutY="70.0" prefHeight="360.0" prefWidth="500.0" style="-fx-background: #fff; -fx-background-color: #fff;" stylesheets="@styles/scrollbar.css" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+            <ScrollPane fx:id="sp_conversation" hbarPolicy="NEVER" prefHeight="430.0" prefWidth="500.0" style="-fx-background: #fff; -fx-background-color: #fff;" stylesheets="@styles/scrollbar.css" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <content>
-                  <VBox fx:id="vb_conversation" alignment="TOP_CENTER" prefHeight="358.0" prefWidth="500.0" style="-fx-background-color: #fff;">
+                  <VBox fx:id="vb_conversation" alignment="TOP_CENTER" prefHeight="428.0" prefWidth="500.0" style="-fx-background-color: #fff;">
                      <padding>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
                   </VBox>
                </content>
             </ScrollPane>
-            <Pane prefHeight="70.0" prefWidth="500.0" style="-fx-background-color: #fff;">
-               <children>
-                  <Label fx:id="lb_receiver" layoutX="40.0" layoutY="20.0" text="bader-t" textFill="#0088cc">
-                     <font>
-                        <Font name="Calibri" size="22.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
          </children>
       </AnchorPane>
       <Button fx:id="btn_logout" layoutX="150.0" layoutY="20.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="28.0" style="-fx-background-color: #0088cc; -fx-border-color: #fff; -fx-border-radius: 5;" text="O" textFill="WHITE">

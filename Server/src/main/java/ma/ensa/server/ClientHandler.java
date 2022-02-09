@@ -85,7 +85,7 @@ public class ClientHandler implements Runnable{
         for(ClientHandler clientHandler : clientHandlers){
             connectedUser += clientHandler.username + ":";
         }
-        return connectedUser.substring(0,connectedUser.length()-1);
+        return connectedUser.length() == 0 ? "" : connectedUser.substring(0,connectedUser.length()-1);
     }
 
 
