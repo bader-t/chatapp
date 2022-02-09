@@ -115,7 +115,7 @@ public class ClientController implements Initializable {
             }catch(IOException e){
                 e.printStackTrace();
             }
-            client.shutDown();
+            client.sendMessage("@loggedOut", client.getUsername());
 
         });
        stage.setOnCloseRequest(event -> {
